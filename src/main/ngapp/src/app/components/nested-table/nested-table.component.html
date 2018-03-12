@@ -1,0 +1,105 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+
+  
+ 
+   <mat-card>
+       <h1>
+           Data table with detail preview
+       </h1>
+       <mat-table #table [dataSource]="dataSource">
+
+
+           <!-- Position Column -->
+           <ng-container matColumnDef="position">
+               <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+               <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+           </ng-container>
+
+           <!-- Icon Column -->
+           <ng-container matColumnDef="chart">
+               <mat-header-cell *matHeaderCellDef> Chart </mat-header-cell>
+               <mat-cell *matCellDef="let element" style="justify-content:center; display:flex;">  <app-pie-chart></app-pie-chart>  </mat-cell>
+           </ng-container>
+
+
+           <!-- Icon Column -->
+           <ng-container matColumnDef="icon">
+               <mat-header-cell *matHeaderCellDef>  Icon </mat-header-cell>
+               <mat-cell *matCellDef="let element"> <a href="{{element.icon}}" target="new"><img src="{{element.icon}}" /></a> </mat-cell>
+           </ng-container>
+
+           <!-- Name Column -->
+           <ng-container matColumnDef="name">
+               <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+               <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+           </ng-container>
+
+           <!-- Weight Column -->
+           <ng-container matColumnDef="weight">
+               <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+               <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+           </ng-container>
+
+           <!-- Symbol Column -->
+           <ng-container matColumnDef="symbol">
+               <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+               <mat-cell *matCellDef="let element"> <a href="{{element.symbol}}">{{element.symbol}}</a> </mat-cell>
+           </ng-container>
+
+           <ng-container matColumnDef="action">
+               <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+               <mat-cell *matCellDef="let element"> <a href="#delete?id={{element.position}}" (click)="onEdit($event,element.position)">Delete</a> | <a href="#edit?id={{element.position}}">Edit</a></mat-cell>
+           </ng-container>
+
+           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+           <mat-row *matRowDef="let row; columns: displayedColumns; let index = index"
+                    (click)="insertComponent(index, detailComponent)" #tableRow matRipple>
+           </mat-row>
+       </mat-table>
+   </mat-card>
+
+
+    <mat-card>
+
+    <h1>Nested Datagrid</h1>
+
+
+ <mat-table #table [dataSource]="dataSource">
+
+    
+     <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let element"> <a href="{{element.symbol}}">{{element.symbol}}</a> </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element"> <a href="#delete?id={{element.position}}" (click)="onEdit($event,element.position)">Delete</a> | <a href="#edit?id={{element.position}}">Edit</a></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="['position','name', 'weight','symbol', 'action']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['position','name', 'weight','symbol', 'action']; let index = index"
+             (click)="insertComponent2(index, basicComponent)" #tableRow2>
+    </mat-row>
+  </mat-table>
+    </mat-card>

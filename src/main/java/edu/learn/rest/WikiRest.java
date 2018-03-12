@@ -11,18 +11,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/wiki")
 public class WikiRest {
 
     @Autowired
     private WikiRepo wikiRepo;
 
-    @RequestMapping("/")
+    @RequestMapping("/hello")
     @ResponseBody
     String home() {
         return "Hello World!";
     }
 
-    @RequestMapping("/wiki/list")
+    @RequestMapping("/list")
     @ResponseBody
     List<Wiki> wikiList() {
         return (List<Wiki>) wikiRepo.findAll();

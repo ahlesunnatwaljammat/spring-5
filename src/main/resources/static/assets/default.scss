@@ -1,0 +1,8 @@
+@import 'theme';
+
+.button-primary {
+    background: $primary-color;    
+    padding: $padding-20;
+    font-family: $buttonLabel;
+    color: $color-white;
+}

@@ -1,0 +1,130 @@
+<div class="example-container mat-elevation-z8">
+    <div class="example-header">
+      <button mat-icon-button (click)="toggleFormMode()">
+          <mat-icon>{{ !isReadOnly ? 'view_module' : 'mode_edit' }}</mat-icon>
+          <span>{{ !isReadOnly ? 'Show ReadOnly Mode' : 'Show Edit Mode'}}</span>
+      </button>
+      <br>
+      <button mat-icon-button (click)="enableColumnSearch()">
+          <mat-icon>{{ headerSearchable ? 'not_interested' : 'search' }}</mat-icon>
+          <span>{{ !headerSearchable ? 'Enable Column Search' : 'Disable Column Search'}}</span>
+      </button>
+    </div>
+    <div class="example-header">
+        <mat-form-field>
+            <mat-select #columnSelect placeholder="Show/Hide Columns" [formControl]="columns" multiple [(ngModel)]="displayedColumns">
+              <mat-option *ngFor="let column of columnList" [value]="column">{{column}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <div class="search-header" style="display: none">
+        <h3>Search by Columns:</h3>       
+        <mat-form-field>
+            <mat-select placeholder="Search Type" [(value)]="searchType">
+              <mat-option value="1">And</mat-option>
+              <mat-option value="2">Or</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="example-header">
+        <button mat-icon-button (click)="printGrid()">
+            <mat-icon>print</mat-icon>
+            <span>Print</span>
+        </button>
+    </div>
+    <div id='myGrid' class="example-header">
+        <mat-table #table [dataSource]="dataSource" matSort>
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+        
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span *ngIf="!headerSearchable">S.No.</span>
+                  <mat-form-field *ngIf="headerSearchable">
+                      <input matInput (keyup)="applyFilter($event.target.value, 'position')" placeholder="S.No. ...">
+                  </mat-form-field> 
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element; let i = index;">
+                  <input *ngIf="!isReadOnly" #position matInput placeholder="S.No." [value]="element.position" class="edit-text" 
+                  (focusout)="updateDataSource(element, position.value)">
+                  <span *ngIf="isReadOnly">{{element.position}} </span> 
+              </mat-cell>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                 <span *ngIf="!headerSearchable">Name</span>
+                 <mat-form-field *ngIf="headerSearchable">
+                    <input matInput (keyup)="applyFilter($event.target.value, 'name')" placeholder="Name ...">
+                </mat-form-field> 
+                </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <span matTooltip="{{element.name}}">{{ (element.name.length > 6)? (element.name | slice:0:6)+'..':(element.name) }} </span>
+              </mat-cell>
+            </ng-container>
+        
+            <!-- Weight Column -->
+            <ng-container matColumnDef="weight">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> 
+                  <span *ngIf="!headerSearchable">Weight</span> 
+                  <mat-form-field *ngIf="headerSearchable">
+                      <input matInput (keyup)="applyFilter($event.target.value, 'weight')" placeholder="Weight ...">
+                  </mat-form-field>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+            </ng-container>
+        
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="symbol">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> 
+                  <span *ngIf="!headerSearchable">Symbol</span>  
+                  <mat-form-field *ngIf="headerSearchable">
+                      <input matInput (keyup)="applyFilter($event.target.value, 'symbol')" placeholder="Symbol ...">
+                  </mat-form-field> 
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+            </ng-container>
+        
+            <!-- Action Menu -->
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                      <mat-icon>settings</mat-icon>
+                    </button>
+                      <mat-menu #menu="matMenu">
+                      <button mat-menu-item (click)="getValue(row, 'Edit')">
+                        <mat-icon>mode_edit</mat-icon>
+                        <span>Edit</span>
+                      </button>
+                      <button mat-menu-item (click)="getValue(row, 'Report')">
+                        <mat-icon>donut_small</mat-icon>
+                        <span>Report</span>
+                      </button>
+                      <button mat-menu-item (click)="getValue(row, 'Delete')">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                      </button>
+                    </mat-menu>
+              </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns; let id = index"></mat-row>
+          </mat-table>
+         
+        
+          <mat-paginator #paginator
+            [pageSize]="10"
+            [pageSizeOptions]="[5, 10, 20]"
+            [showFirstLastButtons]="true">
+          </mat-paginator>
+        
+    </div>
+  
+  
+  
+</div>
