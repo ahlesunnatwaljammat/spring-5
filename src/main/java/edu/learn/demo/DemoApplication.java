@@ -11,12 +11,9 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"edu.learn.rest"})
+@ComponentScan(basePackages = {"edu.learn.rest","edu.learn.config"})
 @EntityScan(basePackages = {"edu.learn.jpa.entities"})
 @EnableJpaRepositories(basePackages = {"edu.learn.jpa.repos"})
 public class DemoApplication {
