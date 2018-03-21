@@ -10,11 +10,17 @@ public class Wiki {
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO)
     private Long id;
+    private String title;
     private String content;
 
     protected Wiki() {}
 
-    public Wiki(String content) {
+    public Wiki(String title) {
+        this.title = title;
+    }
+
+    public Wiki(String title, String content) {
+        this.title = title;
         this.content = content;
     }
 
@@ -24,6 +30,14 @@ public class Wiki {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
@@ -38,6 +52,7 @@ public class Wiki {
     public String toString() {
         return "Wiki{" +
                 "id=" + id +
+                ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 '}';
     }

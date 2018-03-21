@@ -3,8 +3,10 @@ import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatCardModule, MatTableModule, MatMenuModule, MatPaginatorModule, MatSortModule,
-  MatProgressSpinnerModule, MatProgressBarModule, MatToolbarModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatSelectModule,
-  MatOptionModule, MatTooltipModule, MatIconModule, MatSnackBarModule, MatGridListModule, MatTabsModule, MatCheckboxModule
+  MatProgressSpinnerModule, MatProgressBarModule, MatToolbarModule, MatDividerModule, MatFormFieldModule,
+  MatInputModule, MatSelectModule,
+  MatOptionModule, MatTooltipModule, MatIconModule, MatSnackBarModule, MatGridListModule, MatTabsModule,
+  MatCheckboxModule, MatAutocompleteModule, MatSliderModule
 } from '@angular/material';
 
 import { ChartsModule } from 'ng2-charts';
@@ -46,9 +48,8 @@ import {NestedTableComponent} from './components/nested-table/nested-table.compo
     BrowserAnimationsModule,
     MatButtonModule, MatTableModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatTabsModule, MatGridListModule,
     MatSelectModule, MatOptionModule, ReactiveFormsModule, MatSortModule, MatTooltipModule, MatMenuModule,
-    MatIconModule, MatSnackBarModule, MatGridListModule, MatMenuModule, MatCardModule, MatToolbarModule, MatDividerModule, MatFormFieldModule,
-    MatTableModule, MatPaginatorModule, MatSortModule,
-    MatProgressSpinnerModule, MatProgressBarModule,
+    MatIconModule, MatSnackBarModule, MatGridListModule, MatMenuModule, MatCardModule, MatToolbarModule, MatDividerModule,
+    MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatProgressBarModule,
     InfiniteScrollModule, ChartsModule, HttpClientModule
   ],
   providers: [HttpClientModule],

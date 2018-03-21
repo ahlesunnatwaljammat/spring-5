@@ -1,0 +1,17 @@
+<div style="margin-top: 20px;">
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="State" #search aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl" (keyup)="searchWikiOnServer(search.value,$event)">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let wiki of filteredStates | async" [value]="wiki.title">
+          <!--<img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />-->
+          <span>{{ wiki.title }}</span> |
+          <small>Content: {{wiki.content}}</small>
+        </mat-option>
+        <mat-card>
+          <h5>Hello</h5>
+        </mat-card>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>

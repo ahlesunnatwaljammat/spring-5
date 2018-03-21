@@ -7,8 +7,6 @@ import {EditTableComponent} from './components/edit-table/edit-table.component';
 import {MdUrebalGridComponent} from './components/md-urebal-grid/md-urebal-grid.component';
 import {NestedTableComponent} from './components/nested-table/nested-table.component';
 
-
-
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -17,7 +15,8 @@ const routes: Routes = [
   { path: 'data-table', component: EditTableComponent },
   { path: 'edit-data-table', component: MdUrebalGridComponent },
   { path: 'nested-table', component: NestedTableComponent },
-  { path: 'wiki', loadChildren: 'app/components/wiki/wiki.module#WikiModule' }
+  { path: 'wiki', loadChildren: 'app/components/wiki/wiki.module#WikiModule' },
+  { path: 'autocomplete', loadChildren: 'app/components/autocomplete/autocomplete.module#AutocompleteModule' }
 ];
 
 

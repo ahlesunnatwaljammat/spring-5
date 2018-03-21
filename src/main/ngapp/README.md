@@ -46,13 +46,18 @@ Open app.component.html and add the following:
 
 #### Routing
 <pre> 
-ng g m components/wiki --routing
+ng g m components/autocomplete --routing
 </pre>
 
-Add WikiModule in app.modules.ts
+Add Autocomplete Module in app.modules.ts, if module is lazy loaded then add the following
+<pre>
+{ path: 'autocomplete', loadChildren: 'app/components/autocomplete/autocomplete.module#AutocompleteModule' }
+</pre>
+otherwise add the following
+
 
 <pre>
-ng g c components/wiki/wiki-home -is
+ng g c components/autocomplete -is
 </pre>
 
 To deploy on nginx

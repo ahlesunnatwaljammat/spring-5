@@ -24,5 +24,6 @@ export class WikiListComponent implements OnInit {
 
 export interface Wiki {
   id : number,
+  title : string,
   content: string
 }

@@ -18,6 +18,8 @@ import { Component, OnInit } from '@angular/core';
           <a mat-menu-item [routerLink]="['/edit-data-table']">Edit Data Table Demo</a>
           <a mat-menu-item [routerLink]="['/nested-table']">Nested Table Demo</a>
           <a mat-menu-item [routerLink]="['/wiki']">Wiki Home</a>
+          <a mat-menu-item [routerLink]="['/autocomplete']">Autocomplete Demo 1</a>
+          <a mat-menu-item [routerLink]="['/autocomplete/demo2']">Autocomplete Demo 2</a>
         </mat-menu>
         </div>
       </mat-toolbar-row>
