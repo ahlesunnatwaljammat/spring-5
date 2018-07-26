@@ -61,4 +61,4 @@ ng g c components/autocomplete -is
 </pre>
 
 To deploy on nginx
-ng build --prod --base-href=./
+ng build --prod --base-href=/app --deploy-url=/app/
